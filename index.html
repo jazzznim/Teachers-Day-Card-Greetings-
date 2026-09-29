@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Customizable interactive Teachers' Day flip card with photos and audio.">
+  <title>Teachers' Day Flip Card</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">♡ <span>Teachers' Day</span></div>
+    <div class="top-message">Thank you for making a difference ♡</div>
+    <div class="date">☀ October 5</div>
+  </header>
+
+  <main class="workspace">
+    <aside class="sidebar">
+      <button class="tool active" data-scroll="cardArea">⌂<span>Home</span></button>
+      <label class="tool">▧<span>Add Photo</span><input id="photoInput" type="file" accept="image/*" multiple></label>
+      <label class="tool">♬<span>Add Audio</span><input id="audioInput" type="file" accept="audio/*"></label>
+      <button class="tool" data-scroll="customizer">◉<span>Customize</span></button>
+      <button class="tool" id="resetBtn">⚙<span>Reset</span></button>
+    </aside>
+
+    <section class="content" id="cardArea">
+      <div class="card-stage">
+        <button class="flip-arrow" id="prevBtn" aria-label="Previous photo">‹</button>
+
+        <div class="flip-card" id="flipCard">
+          <div class="card-inner">
+            <article class="card-face card-front">
+              <div class="chalk-decoration">✦</div>
+              <p class="small-label">A SPECIAL MESSAGE FOR</p>
+              <h1>Happy<br><span>Teachers'</span><br>Day!</h1>
+              <p class="front-subtitle">Today we celebrate you,<br>the heart of education.</p>
+              <div class="illustration">
+                <div class="flowers">✿ ❀ ✿</div>
+                <div class="books">
+                  <span>INSPIRE</span><span>GUIDE</span><span>SUPPORT</span><span>EMPOWER</span>
+                </div>
+                <div class="mug">Best<br>Teacher<br>Ever ♥</div>
+              </div>
+              <div class="front-footer">Thank you for inspiring minds.</div>
+            </article>
+
+            <article class="card-face card-back">
+              <div class="paper-corner">♡</div>
+              <p class="small-label">A NOTE FROM</p>
+              <h2 id="previewName">Princess Muñoz</h2>
+
+              <div class="photo-frame" id="photoFrame">
+                <div class="photo-placeholder" id="photoPlaceholder">
+                  <span>＋</span>
+                  <small>Add your photo</small>
+                </div>
+                <img id="photoPreview" alt="Selected Teachers' Day photo">
+              </div>
+
+              <div class="message-preview" id="previewMessage">
+                Dear Teacher,<br><br>
+                Thank you for your patience, guidance, kindness, and for believing in your students.
+                You don't just teach lessons—you inspire dreams, build confidence, and make a lasting difference.
+                <br><br>
+                Happy Teachers' Day! 🌷
+              </div>
+
+              <p class="signature">With gratitude,<br><strong id="previewSignature">Your Student</strong></p>
+              <div class="back-flower">🌻</div>
+            </article>
+          </div>
+        </div>
+
+        <button class="flip-arrow" id="nextBtn" aria-label="Next photo">›</button>
+      </div>
+
+      <div class="controls">
+        <label class="action-button photo-button">
+          ▧ Add Photo
+          <input id="photoInputBottom" type="file" accept="image/*" multiple>
+        </label>
+
+        <label class="action-button audio-button">
+          ♫ Add Audio
+          <input id="audioInputBottom" type="file" accept="audio/*">
+        </label>
+
+        <button class="action-button flip-button" id="flipBtn">▣ Flip Card</button>
+
+        <div class="audio-player" id="audioPlayer" hidden>
+          <span>♫</span>
+          <audio id="audioElement" controls></audio>
+        </div>
+      </div>
+
+      <section class="customizer" id="customizer">
+        <div class="customizer-heading">
+          <h3>Customize Your Card</h3>
+          <p>Edit the message, colors, font, and your name.</p>
+        </div>
+
+        <div class="form-grid">
+          <label>Recipient / Teacher
+            <input id="teacherInput" type="text" value="Dear Teacher,">
+          </label>
+          <label>Your Name
+            <input id="nameInput" type="text" value="Princess Muñoz">
+          </label>
+          <label>Signature
+            <input id="signatureInput" type="text" value="Your Student">
+          </label>
+          <label>Font
+            <select id="fontInput">
+              <option value="DM Sans">Modern — DM Sans</option>
+              <option value="Playfair Display">Elegant — Playfair Display</option>
+              <option value="Pacifico">Handwritten — Pacifico</option>
+            </select>
+          </label>
+          <label class="wide">Message
+            <textarea id="messageInput" rows="5">Thank you for your patience, guidance, kindness, and for believing in your students. You don't just teach lessons—you inspire dreams, build confidence, and make a lasting difference.
+
+Happy Teachers' Day! 🌷</textarea>
+          </label>
+        </div>
+
+        <div class="swatches">
+          <span>Card accent:</span>
+          <button class="swatch green selected" data-accent="#315c91" aria-label="Blue"></button>
+          <button class="swatch gold" data-accent="#b88a2d" aria-label="Gold"></button>
+          <button class="swatch rose" data-accent="#bd7272" aria-label="Rose"></button>
+          <button class="swatch purple" data-accent="#806eaa" aria-label="Purple"></button>
+          <button class="swatch teal" data-accent="#397b70" aria-label="Teal"></button>
+        </div>
+      </section>
+
+      <p class="tip">Tip: Add 1–5 photos and one audio greeting. The photos become a slideshow on the back of the card.</p>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script src="script.js"></script>
+</body>
+</html>
